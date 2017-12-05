@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE loadFileList SYSTEM "/wt/load/windchillLoad.dtd">
+<!--
+   List of files to load in order for cssrc data.
+   File formats should follow the format as outlined in the
+   windchillLoad.dtd  At a very minimum the filename
+   and title should be declared.
+ -->
+
+<loadFileList>	
+  
+  <!-- Workflow Definitions  工作流程  -->
+  <!-- <loadFile filename="ext/workflows/XXX.xml" title="XXX流程" containerPath="/wt.inf.container.OrgContainer=XXX"></loadFile>  -->
+  
+  <!-- Lifecycle Definitions 生命周期  -->
+  
+  <!-- Init Rule Definitions 初始化规则  -->
+  
+  <!-- Container Template 容器模板   -->
+  
+</loadFileList>
