@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE listofactions SYSTEM "actions.dtd">
+<listofactions>
+
+	<objecttype name="tasvObject" resourceBundle="ext.tzc.tasv.resource.TasvObjectActionsRB">
+        <action name="createPrintApplication">
+			<command class="ext.tzc.tasv.printApplicationFrom.processor.CreatePrintApplicationFromProcessor"
+				method="execute"/>
+		</action>
+   </objecttype>
+
+
+
+	<objecttype name="print" resourceBundle="ext.print.resource">
+		<!-- Create Print Request 
+		<action name="createPrintRequestx" multiselect="true"
+			selectRequired="true">
+			<command class="ext.print.PrintRequestFormProcessor"
+				method="execute" windowType="new"  url="/netmarkets/jsp/ext/print/createPrintRequestx.jsp"/>
+		</action>
+        -->
+        <action name="createPrintRequestx">
+			<command class="ext.print.PrintRequestCommand"
+				method="create"/>
+		</action>
+		
+		<action name="createPrintRequestxdetail">
+			<command windowType="wizard_step" preloadWizardPage="false"
+				required="true"  url="/netmarkets/jsp/ext/print/createPrintRequestxdetail.jsp" />
+		</action>
+	</objecttype>
+
+<!--<objecttype name="tzcReport" class="wt.fc.Persistable"
+		resourceBundle="ext.report.ActionLabelRB">
+
+	    <action name="customTZCReportsGWT">
+		<command class="com.ptc.cat.ui.client.action.NoAction"/>
+	    </action>
+
+		<action name="psbReportMultiLevelBOMBZJMXB">
+			<command class="com.ptc.cat.ui.client.action.MultiLevelBOMAction"
+				url="/netmarkets/jsp/ext/report/BZJMXBReport.jsp" windowType="popup" />exportProductDetailsSummary
+		</action>
+		<action name="psbReportMultiLevelBOMWGJMXB">
+			<command class="com.ptc.cat.ui.client.action.MultiLevelBOMAction"
+				url="/netmarkets/jsp/ext/report/WGJMXBReport.jsp" windowType="popup" />
+		</action>
+		<action name="psbReportMultiLevelBOMFZMX">
+			<command class="com.ptc.cat.ui.client.action.MultiLevelBOMAction"
+				url="/netmarkets/jsp/ext/report/FZMXBReport.jsp" windowType="popup" />
+		</action>
+		<action name="psbReportMultiLevelCAPPBOM">
+			<command class="com.ptc.cat.ui.client.action.MultiLevelBOMAction"
+				url="/netmarkets/jsp/ext/report/CAPPReport.jsp" windowType="popup" />
+		</action>
+    </objecttype>-->
+	
+	<objecttype name="customDocActions" class="wt.doc.WTDocument" resourceBundle="ext.custom.customResource">
+		<action name="startDOCWF">
+	       <command class="ext.doc.StartDOCWF" method="handStartProcess" />
+	       <includeFilter name="DocWorkflowValidator"/> 
+	  </action>
+	</objecttype>
+
+	<objecttype name="part" class="" resourceBundle="ext.tasv.bom.resource.BatchDownloadRB">
+	        <action name="batchDownload">
+			<command windowType="popup" url="/netmarkets/jsp/ext/bom/report/batchDownload.jsp" />
+		</action>
+	</objecttype>
+
+
+	 <!--报表总入口-->
+	<objecttype name="tan" class="wt.fc.Persistable" >
+		<action name="tanCustGroupGWT" resourceBundle="ext.tan.partreport.ReportResource">
+			   <command class="com.ptc.cat.ui.client.action.NoAction"/>
+		</action>
+		<action name="tanReportGWT" resourceBundle="ext.tan.partreport.ReportResource">
+			   <command class="com.ptc.cat.ui.client.action.NoAction"/>
+		</action>
+		
+			<action name="exportOutsourcingPartSummary" resourceBundle="ext.tan.partreport.ReportResource">
+			 <command class="com.ptc.cat.ui.client.action.MultiLevelBOMAction"  windowType="popup" url="/netmarkets/jsp/tan/partreport/OutsourcingPartSummaryExport.jsp"/>
+	     <moreurlinfo>height=200,width=400,menubar=no,toolbar=no</moreurlinfo>
+	  </action>	  
+		
+		<action name="exportStandardPartSummary" resourceBundle="ext.tan.partreport.ReportResource">
+			 <command class="com.ptc.cat.ui.client.action.MultiLevelBOMAction"  windowType="popup" url="/netmarkets/jsp/tan/partreport/StandardPartSummaryExport.jsp"/>
+	     <moreurlinfo>height=200,width=400,menubar=no,toolbar=no</moreurlinfo>
+	  </action>
+	  
+	   <action name="exportProductDetailsSummary" resourceBundle="ext.tan.partreport.ReportResource">
+			 <command class="com.ptc.cat.ui.client.action.MultiLevelBOMAction"  windowType="popup" url="/netmarkets/jsp/tan/partreport/ProductDetailsSummary.jsp"/>
+	     <moreurlinfo>height=200,width=400,menubar=no,toolbar=no</moreurlinfo>
+	  </action>
+	  
+	    <action name="exportGroupingDetailsSummary" resourceBundle="ext.tan.partreport.ReportResource">
+			 <command class="com.ptc.cat.ui.client.action.MultiLevelBOMAction"  windowType="popup" url="/netmarkets/jsp/tan/partreport/GroupingDetailsSummary.jsp"/>
+	     <moreurlinfo>height=200,width=400,menubar=no,toolbar=no</moreurlinfo>
+	  </action>
+	  
+	  <action name="exportGroupingDetailsSummaryTW" resourceBundle="ext.tan.partreport.ReportResource">
+			 <command class="com.ptc.cat.ui.client.action.MultiLevelBOMAction"  windowType="popup" url="/netmarkets/jsp/tan/partreport/GroupingDetailsSummaryTW.jsp"/>
+	     <moreurlinfo>height=200,width=400,menubar=no,toolbar=no</moreurlinfo>
+	  </action>
+	  
+	   <action name="exportGroupingDetailsSpecialSummary" resourceBundle="ext.tan.partreport.ReportResource">
+			 <command class="com.ptc.cat.ui.client.action.MultiLevelBOMAction"  windowType="popup" url="/netmarkets/jsp/tan/partreport/GroupingDetailsSpecialSummary.jsp"/>
+	     <moreurlinfo>height=200,width=400,menubar=no,toolbar=no</moreurlinfo>
+	  </action>
+	  
+	    <action name="psbReportMultiLevelCAPPBOM" resourceBundle="ext.tan.partreport.ReportResource">
+			 <command class="com.ptc.cat.ui.client.action.MultiLevelBOMAction"  windowType="popup" url="/netmarkets/jsp/ext/report/CAPPReport.jsp"/>
+	     <moreurlinfo>height=200,width=400,menubar=no,toolbar=no</moreurlinfo>
+	  </action>	  
+	   
+	</objecttype>
+	
+		  <!--ECN上PDF导出by yaoy-->
+	  <objecttype name="geneirc" resourceBundle="ext.tasv.pdfexport.resource.ExportPDFActionsRB">
+	       <action name="exportPDF" ajax="page">
+      <command class="ext.tasv.pdfexport.commands.ExportPdfCommands" method="exportObjects"  url="netmarkets/jsp/ext/tasv/exportPdf/exportPdfZip.jsp" windowType="popup"/>		
+   </action>     
+     </objecttype>
+<objecttype name="closedcycle" class="wt.fc.Persistable" >
+		 <action name="closedCycleCust" resourceBundle="ext.cycle.closedCycleCustResource"></action>  
+		 <action name="closedCycleReport" resourceBundle="ext.cycle.closedCycleCustResource">
+			<command  url="/netmarkets/jsp/ext/cycle/admin_index.jsp" />
+		</action>
+</objecttype>
+<!--  add for UG signature  -->
+<objecttype name="henben" class="wt.fc.Persistable" >
+		 <action name="henbenCust" resourceBundle="ext.hbt.henbenCustResource"></action>
+		 
+         	       
+	    <action name="createTopObjectType" resourceBundle="ext.hbt.reviewobjecttype.ObjectTypeResource"  ajax="component">
+			   <command class="ext.hbt.reviewobjecttype.CreateTopObjectTypeProcessor" method="execute" url="netmarkets/jsp/hbt/reviewobjecttype/createTopObjectType.jsp" windowType="popup" />
+	   </action>
+	    <action name="createTopObjectType_step" >
+			   <command  url="netmarkets/jsp/hbt/reviewobjecttype/createTopObjectType_step.jsp" windowType="wizard_step" />
+	   </action>
+	   <action name="addSubTypeItem" resourceBundle="ext.hbt.reviewobjecttype.ObjectTypeResource"  ajax="table">
+ 	     	<command class="ext.hbt.reviewobjecttype.AddSubTypeItemProcessor" method="execute" url="netmarkets/jsp/hbt/reviewobjecttype/addSubTypeItem.jsp" windowType="popup"/>
+	   </action>
+	    <action name="addSubTypeItem_step">
+        <command url="netmarkets/jsp/hbt/reviewobjecttype/addSubTypeItem_step.jsp"  windowType="wizard_step"/>
+     </action>
+	   <action name="changeSubTypeItem" resourceBundle="ext.hbt.reviewobjecttype.ObjectTypeResource"  ajax="component">
+ 	     	<command class="ext.hbt.reviewobjecttype.ChangeSubTypeItemProcessor" method="execute" url="netmarkets/jsp/hbt/reviewobjecttype/changeSubTypeItem.jsp" windowType="popup"/>
+	   </action>
+	   <action name="changeSubTypeItem_step">
+        <command url="netmarkets/jsp/hbt/reviewobjecttype/changeSubTypeItem_step.jsp"  windowType="wizard_step"/>
+     </action>
+	   <action name="removeSubTypeItem" resourceBundle="ext.hbt.reviewobjecttype.ObjectTypeResource"  ajax="page">
+ 	     	<command class="ext.hbt.reviewobjecttype.RemoveSubTypeItemProcessor" method="execute" onClick="JCAConfirm(event,'ext.hbt.reviewobjecttype.ObjectTypeResource.DELETE')"/>
+	   </action>
+	    	   
+	   <action name="signObjectType" resourceBundle="ext.hbt.signature.SignatureResource" ajax="component">
+         <command  url="netmarkets/jsp/hbt/signature/signObjectType.jsp"  windowType="page"/>
+	   </action>	
+	    <action name="createSignature" resourceBundle="ext.hbt.signature.SignatureResource"  ajax="component">
+			   <command class="ext.hbt.signature.CreateSignatureProcessor" method="execute" url="netmarkets/jsp/hbt/signature/createSignature.jsp" windowType="popup" />
+	   </action>
+	    <action name="createSignature_step" >
+			   <command  url="netmarkets/jsp/hbt/signature/createSignature_step.jsp" windowType="wizard_step" />
+	   </action>
+	   <action name="updateSignature" resourceBundle="ext.hbt.signature.SignatureResource"  ajax="component">
+ 	     	<command class="ext.hbt.signature.UpdateSignatureProcessor" method="execute" url="netmarkets/jsp/hbt/signature/updateSignature.jsp" windowType="popup"/>
+	   </action>
+	    <action name="updateSignature_step">
+        <command url="netmarkets/jsp/hbt/signature/updateSignature_step.jsp"  windowType="wizard_step"/>
+     </action>
+	   <action name="removeSignature" resourceBundle="ext.hbt.signature.SignatureResource"  ajax="component">
+ 	     	<command class="ext.hbt.signature.RemoveSignatureProcessor" method="execute" onClick="JCAConfirm(event,'ext.hbt.signature.SignatureResource.DELETE')"/>
+	   </action>
+	   
+	   
+</objecttype>
+
+<!--      重签  杨小军开发     -->
+	<objecttype name="sign" class="" resourceBundle="ext.pdf.SignRB">
+    
+		<action name="reSignPDF" ajax="component">
+			<command class="ext.pdf.ReSignHelper" method="reSignPDF" onClick="JCAConfirm(event,'ext.pdf.SignRB.CONFIRM_RESIGN')" />
+			<includeFilter name="ReSignFilter"/> 
+		</action>	
+		<action name="reSignPDF1" ajax="component">
+			<command class="ext.pdf.ReSignHelper1" method="reSignPDF" onClick="JCAConfirm(event,'ext.pdf.SignRB.CONFIRM_RESIGN')" />
+			<includeFilter name="ReSignFilter"/> 
+		</action>	
+		<action name="reSignDwg" ajax="component">
+            <command url="netmarkets/jsp/ext/reSign/reSignDWG.jsp"
+            		 class="ext.pdf.ResignDwgProcessor" 
+                     method="execute"
+                     windowType="popup"/>
+			<includeFilter name="ReSignFilter"/> 
+        </action>
+        
+        <action name="reSignDwg_step">
+            <command url="netmarkets/jsp/ext/reSign/reSignDWG_step.jsp" windowType="wizard_step"/>
+        </action>
+		
+    </objecttype>
+
+<!-- add caizg 20170825 -->
+<objecttype class="wt.workflow.work.WorkItem" name="work" >
+      <action ajax="row" enabledwhensuspended="true" name="complete" >
+            <command class="ext.workflow.CustNmWorkItemCommands" method="complete" onClick="EnableTextBox()"/>
+      </action>
+	</objecttype>
+	<!-- add caizg 20170911 -->
+	<objecttype class="" name="rejectOpt" resourceBundle="ext.tasv.rejectOptimization.resource.RejectOptActionRB">
+      <action  name="rejectOpt" >
+            <command required="true" class="ext.tasv.rejectOptimization.processor.RejectAndCreateECA" method="rejectCreateECA" />
+      </action>
+	</objecttype>
+	
+	<!-- add caizg 20171122 -->
+	<objecttype name="report" resourceBundle="ext.yhzc.report.ExportSystemObjectActionRB">
+      <action  name="exportParts" >
+            <command  class="ext.yhzc.report.ExportSystemObject" method="exportAllPart" />
+      </action>
+	</objecttype>
+
+</listofactions>

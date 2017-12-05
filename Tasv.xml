@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="gb2312"?>
+<project name="Tasv" basedir="." default="all">
+    <description>Tasv Customization Build System</description>
+    <property environment="env" />
+    <property name="base" location="." />
+    <property name="wthome" location="${env.WT_HOME}" />
+    <property name="wt.home" location="${env.WT_HOME}" />
+	<property name="wtcodebase" location="${wthome}/codebase"/>
+	<property name="isverbose" value="false"/>
+	<property name="isoverwrite" value="false"/>
+	<target name="all" depends="check_path, rb, filecopy,jc"/>
+	<target name="dev" depends="check_path, rb, filecopy,jc"/>
+	
+	<!--====================================================================-->
+    <!-- Copy Non-java and Non-rbInfo Files                                 -->
+    <!--====================================================================-->
+    <target name="filecopy" depends="check_path, i_filecopy"/>
+    <target name="i_filecopy">
+    	<copy todir="${wthome}/codebase">
+    	    <fileset dir="${base}/src">
+    	         <include name="**/*" />
+    	         <exclude name="**/*.java" />
+    	         <exclude name="**/*.rbInfo" />
+    	         <exclude name="**/*.cat" />
+    	         <exclude name="**/*.ca~" />
+    	         <exclude name="**/*.mData" />
+    	         <exclude name="**/*.bak" />
+    	         <exclude name="**/Thumbs.db" />
+    	         <exclude name="**/*.svn" />
+    	         <exclude name="**/wt.properties" />
+    	     </fileset>
+    	</copy>
+        <copy todir="${wthome}/src" overwrite="">
+            <fileset dir="${base}/src">
+                <include name="**/*.rbInfo" />
+                <include name="**/*.cat" />
+                <include name="**/*.mData" />
+            </fileset>
+        </copy>
+
+        <copy todir="${wthome}">
+            <fileset dir="${base}">
+                <include name="loadFiles/**/*" />
+                <include name="wtCustom/**/*.rbInfo" />
+                <include name="src/**/*.xml" />     
+            	<exclude name="**/*.bak" />
+            	<exclude name="**/*.svn" />
+            	<exclude name="**/Thumbs.db" />
+            	<exclude name="codebase/**/MANIFEST.MF" />
+            </fileset>   
+        </copy>
+    </target>
+	
+	<!--====================================================================-->
+	<!-- Compiling Java Source                                              -->
+	<!--====================================================================-->
+	<target name="jc" depends="check_path, i_javac"/>
+	<target name="i_javac">
+		<javac srcdir="${base}/src" destdir="${wthome}/codebase" debug="on" encoding="utf-8">
+			<classpath>
+				<pathelement location="${wthome}/srclib/servlet.jar"/>
+				<fileset dir="${wthome}/codebase/WEB-INF/lib" includes="*.jar"/>
+				<fileset dir="${wthome}/lib" includes="*.jar"/>
+				<fileset dir="${wthome}/srclib" includes="**/*.jar"/>
+				<fileset dir="${wthome}/installer" includes="*.jar"/>
+			</classpath>
+			<include name="ext/yhzc/**/*.java" />
+		</javac>
+	</target>
+	
+	<!--====================================================================-->
+    <!-- ResourceBuild                                              -->
+    <!--====================================================================-->    
+    <target name="rb" depends="check_path, i_resourcebuild"/>
+    <target name="i_resourcebuild">
+        <copy todir="${wthome}/wtCustom" verbose="yes">
+            <fileset dir="${base}/wtCustom">
+                <include name="**/*.rbInfo"/>
+            </fileset>
+        </copy>
+    	<exec executable="${shell}">
+    	    <arg line="${shopt} ${ResourceBuild} wt.project.RoleRB true"/>
+        </exec>
+    	<exec executable="${shell}">
+    	    <arg line="${shopt} ${ResourceBuild} wt.lifecycle.StateRB true"/>
+        </exec>
+    </target>
+	
+	
+	<!--====================================================================-->
+	<!--                          Initialization                            -->
+	<!--====================================================================-->
+	<target name="init_os">
+		<condition property="is_win32">
+			<os family="windows"/>
+		</condition>
+		<condition property="is_unix">
+			<os family="unix"/>
+		</condition>
+	</target>
+	<target name="init_win32" depends="init_os" if="is_win32">
+		<echo message="initializing win32 commands"/>
+		<property name="shell" value="cmd.exe"/>
+		<property name="shopt" value="/c"/>
+		<property name="ResourceBuild" value="${wthome}\bin\ResourceBuild.bat"/>
+		<property name="modelInstall" value="${wthome}\bin\modelInstall.bat"/>
+		<property name="xconfmanager" value="${wthome}\bin\xconfmanager.bat"/>
+	</target>
+	<target name="init_unix" depends="init_os" if="is_unix">
+		<echo message="initializing unix commands"/>
+		<property name="shell" value="/bin/sh"/>
+		<property name="shopt" value=""/>
+		<property name="ResourceBuild" value="${wthome}/bin/ResourceBuild.sh"/>
+		<property name="modelInstall" value="${wthome}/bin/modelInstall.sh"/>
+		<property name="xconfmanager" value="${wthome}/bin/xconfmanager"/>
+	</target>
+
+	<target name="i_full">
+		<echo message="Full build mode: will overwrite all files even if newer"/>
+		<property name="isoverwrite" value="true"/>
+	</target>
+
+	<target name="i_verbose">
+		<echo message="Full build mode: will overwrite all files even if newer"/>
+		<property name="isverbose" value="true"/>
+	</target>
+
+	<target name="check_path" depends="init_win32, init_unix">
+		<condition property="path_correct">
+			<and>
+				<available file="${wthome}/site.xconf"/>
+				<available file="${wthome}/codebase/wt.properties.xconf"/>
+				<available file="${wthome}/codebase/WEB-INF/ie.properties"/>
+			</and>
+		</condition>
+		<fail message="WT_HOME not correct, should work in windchill shell." unless="path_correct"/>
+	</target>
+</project>
+    
