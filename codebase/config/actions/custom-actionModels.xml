@@ -432,8 +432,9 @@
 	 <model name="henbenCust navigation">
         <description>Sub tabs under the henbent main tab</description>
         <action name="signObjectType" type="henben" />
-        <!-- 20171122 czg 导出所有部件 -->
-        <action name="exportParts" type="report" />
+        <!-- 20171122 czg 导出所有部件 
+        <action name="expAllParts" type="expPart" />
+        -->
    </model>
    
      <model name="hbt_signObjectType_action_toolbar">
